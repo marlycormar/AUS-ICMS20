@@ -1,0 +1,160 @@
+---
+title: "Atomicity of Puiseux monoids"
+author: "Marly Gotti, </br> Senior Data Scientist, <br> Biogen Inc. <br>"
+date: "AUS-ICMS20, </br> American University of Sharjah, <br> February 8th, 2020"
+output:
+  ioslides_presentation:
+    css: styles/main.css
+    incremental: true
+  #slidy_presentation: default
+  #beamer_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+<!---------------------------------------------------------------->
+<!---------------------------------------------------------------->
+
+## Atomic structure of Puiseux monoids {.build}
+
+
+<div style="font-size: 25px; margin-bottom: 20px">
+_Goal_: Puiseux monoids are the simplest algebraic structure with a fairly complex atomic structure.
+</div>
+
+(i.e. The atomic structure of Puiseux monoids is _NOT_ boorrring)
+
+**Definition**: A Puiseux monoid is a submonoid of $(\mathbb{Q}_{\ge 0}, +)$.
+
+Nicely behaved Puiseux monoids:
+
+  * Numerical monoids: cofinite submonoids of $(\mathbb{N}_0, +)$.
+  
+  * $\langle r^n: n \in \mathbb{N}_0 \rangle$ with $r \in \mathbb{Q}_{\ge 0}$.
+  
+  * $\langle \frac{1}{p} : p \in \mathbb{P} \rangle$, where $\mathbb{P}$ is the set of prime numbers.
+  
+  * $\langle \frac{1}{2^n p_n} : n \in \mathbb{N}_0 \rangle$, where $p_n$ is the sequence of odd prime numbers.
+
+<!---------------------------------------------------------------->
+<!---------------------------------------------------------------->
+
+## Atomicity on algebras and beyond {.build}
+
+* Combinatorics: atomic lattices.
+* Algebraic number theory: ring of integers. In particular, $\mathbb{Z}[\sqrt{-5}]$ is not a UFD since $6 = 2 \cdot 3 = (1 + \sqrt{-5})(1 - \sqrt{-5})$.
+* Commutative algebra: Anderson, Anderson, and Zafrullah introduced the following chain in the context of integral domains 
+\[\text{UFD} \subseteq \text{FFD} \subseteq \text{BFD} \subseteq \text{ACCP} \subseteq \text{atomic}\]
+* Arithmetic of semigroups: commutative (cancellative) monoids. The following chain holds:
+\[\text{UFM} \subseteq \text{FFM} \subseteq \text{BFM} \subseteq \text{ACCP} \subseteq \text{atomic} \subseteq \text{CCM}\]
+
+<!---------------------------------------------------------------->
+<!---------------------------------------------------------------->
+
+## Anderson-Anderson-Zafrullah's chain {.build}
+
+```{r, include=FALSE}
+monoidsChain <- "\\[\\text{UFM} \\subseteq \\text{FFM} \\subseteq \\text{BFM} \\subseteq \\text{ACCP} \\subseteq \\text{atomic} \\subseteq \\text{CCM}\\]"
+```
+
+`r monoidsChain`
+
+**Definitions:**
+
+* Commutative cancellative monoid (_CCM_): Commutative semigroup with identity that satisfies the cancellation property.
+
+Let $M$ be a reduced commutative cancellative monoid written additively.
+
+* Atomic monoid (_atomic_): An element $a \in M$ is said to be an atom if $a = x + y$, with $x, y \in M$, implies that $x = 0$ or $y = 0$. $M$ is atomic if every nonzero element of $M$ can be written as the sum of atoms.
+
+Suppose $M$ is also atomic. We say that $M$ is a
+
+* Bounded Factorization Monoid (_BFM_): if $|\mathsf{L}(x)| < \infty$ for all $x \in M$.
+
+* Finite Factorization Monoid (_FFM_): if $|\mathsf{Z}(x)| < \infty$ for all $x \in M$.
+
+* Unique Factorization Monoid (_UFM_): if $|\mathsf{Z}(x)| = 1$ for all $x \in M$.
+
+<!---------------------------------------------------------------->
+<!---------------------------------------------------------------->
+
+## Factorization chain in elementary monoids (perhaps the best) {.build}
+
+`r monoidsChain`
+
+Elementary monoids:
+
+* Numerical monoids. This chain collapses $\text{UFM} \subseteq \text{FFM} = \text{BFM} = \text{ACCP} = \text{atomic} = \text{CCM}$.
+* Submonoids of $(\mathbb{N}, \cdot)$. This chain collapses $\text{UFM} \subseteq \text{FFM} = \text{BFM} = \text{ACCP} = \text{atomic} = \text{CCM}$.
+* Submonoids of $(\mathbb{Q}_{\ge 0}, +)$, i.e., Puiseux monoids.
+
+<!---------------------------------------------------------------->
+<!---------------------------------------------------------------->
+
+## Puiseux monoids: the right universe (perhaps the best)  {.build}
+
+`r monoidsChain`
+
+The factorization chain is not reversible on the class of Puiseux monoids.
+
+**Examples**:
+
+* $\text{atomic} \not \supseteq \text{CCM}$: $\langle \frac{1}{2^n} \mid n \in \mathbb{N} \rangle$.
+* $\text{ACCP} \not \supseteq \text{atomic}$: $S_r = \langle r^n \mid n \in \mathbb{N}_0 \rangle$ with $r \in \mathbb{Q} \cap (0, 1)$ and $\mathsf{n}(r) \neq 1$. To show that $S_r$ is not an ACCP monoid, consider the sequence of principal ideals $(\mathsf{n}(r)r^n + S_r)_{n \in \mathbb{N}_0}$.
+* $\text{BFM} \not \supseteq \text{ACCP}$: $\langle \frac{1}{p} \mid p \in \mathbb{P} \rangle$. Note that $1 = p\frac{1}{p}$ for any $p \in P$.
+* $\text{FFM} \not \supseteq \text{BFM}$: $M = (\mathbb{Q}_{\ge 1} \cup \{0\}, +)$. We have that $\mathcal{A}(M) = [1, 2) \cap \mathbb{Q}$. Notice that $(1 + 1/n) + (x - 1 - 1/n)$ is a length-2 factorization in $\mathsf{Z}(x)$ for any $x \in (2, 3] \cap \mathbb{Q}$ and $n \in \mathbb{N}, n > 1$.
+* $\text{UFM} \not \supseteq \text{FFM}$: $\langle \frac{p-1}{p} \mid p \in \mathbb{P} \rangle$.
+
+
+<!---------------------------------------------------------------->
+<!---------------------------------------------------------------->
+
+## Known results {.build}
+
+Let $M$ be a Puiseux monoid.
+
+* **Proposition**: $M$ is finitely generated if and only if $M$ is atomic and $\mathcal{A}(M)$ is finite (holds for reduced commutative cancellative monoids).
+* **Theorem**: If $0$ is not a limit point of $M^\bullet$, then $M$ is a BFM and hence is atomic.
+  
+_Note_: The converse of this theorem is not true. Consider the Puiseux monoid $\big\langle p_n/q_n : n \in \mathbb{N} \big\rangle$, where $(p_n)_{n \in \mathbb{N}}$ and $(q_n)_{n \in \mathbb{N}}$ are two strictly increasing sequences of prime numbers satisfying that $q_n > p_n^2$ for each $n \in \mathbb{N}$.
+
+* **Definition**: $M$ is said to be an increasing monoid if $M$ can be generated by an increasing sequence of rational numbers.
+* **Theorem**: Every increasing Puiseux monoid is an FFM.
+
+_Note_: The converse of this theorem does not hold. Let $T = \big\{ 2 - 1/p_n:  n \in \mathbb{N} \big\}$ where $(p_n)_{n \in \mathbb{N}}$ is an increasing sequence of odd prime numbers and consider $M = \big \langle  T \cup \{5/2\} \big \rangle$.
+
+* **Theorem**: Suppose $M$ is non-trivial. Then, $M$ is a UFM if and only if $M \cong (\mathbb{N}_0, +)$.
+
+
+<!---------------------------------------------------------------->
+<!---------------------------------------------------------------->
+
+## References
+
+Anderson, D. D., Anderson, D. F., Zafrullah, M. (1990). Factorizations in integral domains. _J. Pure Appl. Algebra_ 69(1): 1--19.
+	
+Chapman, S. T., Gotti, F., Gotti, M. (2019). Factorization invariants of Puiseux monoids generated by geometric sequences. _Comm. Algebra_ 48: 380--396.
+
+Chapman, S. T., Gotti, F., Gotti, M. (2019). When is a Puiseux monoid atomic? _American Mathematical Monthly_ (to appear).
+	
+Gotti, F. (2019). Increasing positive monoids of ordered fields are FF-monoids. _J. Algebra._ 518: 40--56.
+	
+Gotti, F. (2017). On the atomic structure of Puiseux monoids. _J. Algebra Appl._ 16(07): 1750126.
+	
+Gotti, F., Gotti, M. (2018). Atomicity and boundedness of monotone Puiseux monoids. _Semigroup Forum._ 96(3): 536--552.
+	
+Grams, A. (1974). Atomic domains and the ascending chain condition for principal ideals. _Math. Proc. Cambridge Philos. Soc._ 75(3): 321--329.
+
+<!---------------------------------------------------------------->
+<!---------------------------------------------------------------->
+
+## Thank you!
+
+### Danke!
+<div style='text-align: right'>
+### !شكرا لكم
+</div>
+### Grazie!
+### Merci!

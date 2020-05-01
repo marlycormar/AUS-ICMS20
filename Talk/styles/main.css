@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text&display=swap');
+
+/* Removes slides numbering.  */
+slides > slide:not(.nobackground):after {
+  content: '';
+}
+
+/* Modifies the content of each slide */
+slides article {
+  font-size: 20px;
+  color: #34495E;
+}
+
+/* Modifies any bold text inside a paragraph */
+p strong { 
+  color: #F08080;
+}
+
+/* Modifies any bold text inside a list. */
+li strong { 
+  color: #F08080;
+}
+
+/* Modifies the entire doc. */
+body {
+  font-family: 'Crimson Text', serif;
+}
+
+/* Modifies headers & slide titles. */
+h1, h2, h3, h4, h5, h6 {
+  font-size: 35pt;
+  color: #212F3C !important;
+}
+
+/* Modifies headers & slide titles, expect the main title. */
+h2 {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #D5D8DC;
+}
+
+/* Modifies only the main title. */
+h1 {
+  font-size: 35pt;
+}
+
+/* Changes the text in math mode. */
+.MathJax .mtext {
+  font-size: 20px;
+}
+
+.MathJax .mrow {
+  font-size: 20px;
+}
